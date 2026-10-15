@@ -1745,31 +1745,35 @@ select {
 /* bg- img ============================================================================= */
 
 /* Full Screen Background Image */
+.
 .bg_img {
-  width: 100%;
-  height: 100vh;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-      position: relative;
+    width: 100%;
+    min-height: 100vh; /* height-এর পরিবর্তে min-height */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    position: relative;
     isolation: isolate;
 }
 
-/* Small Screen */
-@media (max-width: 576px) {
-  .bg-image {
-    background-position: center;
-  }
-}
-
-/* নতুন ক্লাস */
+/* Overlay */
 .bg_overlay::before {
     content: "";
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.45);
     z-index: -1;
+    pointer-events: none;
 }
+
+/* Small Screen */
+@media (max-width: 576px) {
+    .bg_img {
+        background-position: center;
+    }
+}
+
 
 /* কনটেন্ট ছবির উপরে থাকবে */
 .bg_content {
@@ -1825,9 +1829,14 @@ select {
 /* All Buttons */
 .bg_content button {
     max-width: 100%;
-    padding: 12px 28px;
+    padding: 5px 15px;
     font-size: 16px;
     cursor: pointer;
+}
+.hover:hover{
+    background-color: black;
+    color: white;
+    transition: all 0.5s;
 }
 
 /* Tablet */
@@ -1855,5 +1864,811 @@ select {
     }
 }
 
+/*=============================================  button ========================  */
+
+.button_one {
+    --btn-color: #a370f0;
+    --btn-shadow: #714da6;
+
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+
+    height: 45px;
+    width: 160px;
+    padding: 0 55px 0 18px;
+    border: none;
+    border-radius: 12px;
+
+    background: var(--btn-color);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.button_one::after {
+    content: "→";
+    position: absolute;
+    right: 5px;
+    width: 35px;
+    height: 35px;
+
+    display: grid;
+    place-items: center;
+    border-radius: 9px;
+    background: white;
+    color: var(--btn-shadow);
+    transition: width 0.3s ease;
+}
+
+.button_one:hover::after {
+    width: calc(100% - 10px);
+}
+
+
+/* Blue */
+.button_blue {
+    --btn-color: #3b82f6;
+    --btn-shadow: #1d4ed8;
+}
+
+/* Green */
+.button_green {
+    --btn-color: #22c55e;
+    --btn-shadow: #15803d;
+}
+
+/* Red */
+.button_red {
+    --btn-color: #ef4444;
+    --btn-shadow: #b91c1c;
+}
+
+/* Dark */
+.button_dark {
+    --btn-color: #334155;
+    --btn-shadow: #0f172a;
+}
+
+/* Cyan */
+.button_cyan {
+    --btn-color: #06b6d4;
+    --btn-shadow: #0e7490;
+}
+
+/* Orange */
+.button_orange {
+    --btn-color: #f97316;
+    --btn-shadow: #c2410c;
+}
+
+/* Pink */
+.button_pink {
+    --btn-color: #ec4899;
+    --btn-shadow: #be185d;
+}
+/* Green */
+.button_green {
+    --btn-tow-bg: #16a34a;
+    --btn-tow-hover: #15803d;
+}
+/* Purple */
+.button_purple {
+    --btn-four-bg: #c4b5fd;
+    --btn-four-hover: #a78bfa;
+    --btn-four-arrow: #111111;
+}
+/* ========================== button tow ==========================*/
+/* Send Button */
+.button_tow {
+    --btn-tow-bg: royalblue;
+    --btn-tow-hover: #1d4ed8;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 12px 18px;
+    border: none;
+    border-radius: 16px;
+
+    background: var(--btn-tow-bg);
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 500;
+
+    cursor: pointer;
+    overflow: hidden;
+    transition: background 0.25s ease, transform 0.2s ease;
+}
+
+/* Send Icon */
+.button_tow::before {
+    content: "";
+    display: inline-block;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+
+    background: currentColor;
+
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M1.946 9.315c-.522-.174-.527-.455.01-.634L21.043 2.32c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M1.946 9.315c-.522-.174-.527-.455.01-.634L21.043 2.32c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z'/%3E%3C/svg%3E") center / contain no-repeat;
+
+    transition: transform 0.3s ease;
+}
+
+/* Hover */
+.button_tow:hover {
+    background: var(--btn-tow-hover);
+}
+
+.button_tow:hover::before {
+    animation: button_tow_fly 0.6s ease-in-out infinite alternate;
+    transform: translateX(5px) rotate(45deg);
+}
+
+/* Click */
+.button_tow:active {
+    transform: scale(0.95);
+}
+
+/* Animation */
+@keyframes button_tow_fly {
+    from {
+        translate: 0 2px;
+    }
+
+    to {
+        translate: 0 -2px;
+    }
+}
+
+/* ========================================================== button three ============================
+/* Button Three - Download */
+.button_three {
+    --btn-three-bg: #1b1b1b;
+    --btn-three-hover: #965eff;
+    --btn-three-icon: #d6b2ff;
+
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+
+    background: var(--btn-three-bg);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.11);
+
+    font-size: 0;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+/* Download Icon */
+.button_three::before {
+    content: "";
+    display: block;
+    width: 17px;
+    height: 22px;
+    background: var(--btn-three-icon);
+
+    clip-path: polygon(
+        35% 0, 65% 0,
+        65% 55%, 100% 55%,
+        50% 100%, 0 55%,
+        35% 55%
+    );
+
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+/* Download Tray */
+.button_three::after {
+    content: "";
+    display: block;
+    width: 18px;
+    height: 5px;
+    margin-top: 3px;
+
+    border-bottom: 2px solid var(--btn-three-icon);
+    border-left: 2px solid var(--btn-three-icon);
+    border-right: 2px solid var(--btn-three-icon);
+
+    transition: border-color 0.3s ease;
+}
+
+/* Tooltip */
+.button_three {
+    overflow: visible;
+}
+
+.button_three[aria-label]::marker {
+    content: "";
+}
+
+.button_three:hover::before {
+    animation: button_three_download 0.6s ease both;
+    background: #ffffff;
+}
+
+.button_three:hover::after {
+    border-color: #ffffff;
+}
+
+.button_three:hover {
+    background: var(--btn-three-hover);
+}
+
+/* Tooltip text */
+.button_three[aria-label] {
+    isolation: isolate;
+}
+
+.button_three[aria-label]::selection {
+    background: transparent;
+}
+
+/* Tooltip via data-tooltip */
+.button_three::selection {
+    background: transparent;
+}
+
+@keyframes button_three_download {
+    0% {
+        transform: translateY(-8px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+/* ======================================== button four =================================*/
+
+
+/* Button Four */
+.button_four {
+    --btn-four-bg: #cfef00;
+    --btn-four-hover: #c4e201;
+    --btn-four-arrow: #000000;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    padding: 10px 20px;
+    border: 1px solid transparent;
+    border-radius: 100px;
+
+    background: var(--btn-four-bg);
+    color: #111111;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+/* Arrow Circle */
+.button_four::after {
+    content: "→";
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--btn-four-arrow);
+    border-radius: 50%;
+
+    color: var(--btn-four-arrow);
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1;
+
+    transition: transform 0.3s ease;
+}
+
+/* Hover */
+.button_four:hover {
+    background: var(--btn-four-hover);
+}
+
+.button_four:hover::after {
+    transform: translateX(5px);
+}
+/* Click */
+.button_four:active {
+    transform: scale(0.95);
+}
+/*=============================================== button five ==============================================*/
+
+
+/* Button Five */
+.button_five {
+    --btn-five-bg: #7808d0;
+    --btn-five-hover: #000000;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    padding: 12px 24px 12px 20px;
+    border: none;
+    border-radius: 100px;
+
+    background: var(--btn-five-bg);
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    text-decoration: none;
+
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+/* Circular Icon */
+.button_five::after {
+    content: "↗";
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+
+    background: #ffffff;
+    color: var(--btn-five-bg);
+
+    font-size: 18px;
+    font-weight: 600;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+/* Hover */
+.button_five:hover {
+    background: var(--btn-five-hover);
+}
+
+.button_five:hover::after {
+    color: var(--btn-five-hover);
+    transform: rotate(45deg);
+}
+
+/* Click */
+.button_five:active {
+    transform: scale(0.96);
+}
+/* ============================================  Button six -===============================================*/
+
+/* Button Six */
+
+.button_six {
+    --button-six-bg: #3653f8;
+
+    font-weight: bold;
+    color: white;
+    border-radius: 2rem;
+    cursor: pointer;
+    width: 95px;
+    height: 43px;
+    border: none;
+    background-color: var(--button-six-bg);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* First text */
+.button_six .button_six_text {
+    display: flex;
+    overflow: hidden;
+}
+
+/* First text moves down */
+.button_six:hover .button_six_text {
+    position: absolute;
+}
+
+.button_six:hover .button_six_text span {
+    transform: translateY(1.2em);
+}
+
+/* First text animation delay */
+.button_six .button_six_text span:nth-child(1) { transition: 0.2s; }
+.button_six .button_six_text span:nth-child(2) { transition: 0.3s; }
+.button_six .button_six_text span:nth-child(3) { transition: 0.4s; }
+.button_six .button_six_text span:nth-child(4) { transition: 0.5s; }
+.button_six .button_six_text span:nth-child(5) { transition: 0.6s; }
+.button_six .button_six_text span:nth-child(6) { transition: 0.7s; }
+
+/* Second text */
+.button_six .button_six_text2 {
+    display: flex;
+    position: absolute;
+    overflow: hidden;
+}
+
+.button_six .button_six_text2 span {
+    transform: translateY(-1.2em);
+}
+
+/* Second text moves into view */
+.button_six:hover .button_six_text2 span {
+    transform: translateY(0);
+}
+
+/* Second text animation delay */
+.button_six .button_six_text2 span:nth-child(1) { transition: 0.2s; }
+.button_six .button_six_text2 span:nth-child(2) { transition: 0.3s; }
+.button_six .button_six_text2 span:nth-child(3) { transition: 0.4s; }
+.button_six .button_six_text2 span:nth-child(4) { transition: 0.5s; }
+.button_six .button_six_text2 span:nth-child(5) { transition: 0.6s; }
+.button_six .button_six_text2 span:nth-child(6) { transition: 0.7s; }
+
+/* ======================================== seven =============================================================*/
+
+/* Button Seven */
+
+.button_seven {
+    --button-seven-bg: #ffffff;
+    --button-seven-hover: #4ade80;
+    --button-seven-text: #000000;
+
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 192px;
+    height: 56px;
+    padding: 0 12px 0 48px;
+    border: none;
+    border-radius: 16px;
+
+    background: var(--button-seven-bg);
+    color: var(--button-seven-text);
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 600;
+
+    cursor: pointer;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Green background */
+.button_seven::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    z-index: -1;
+
+    width: 44px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--button-seven-hover);
+
+    transition: width 0.5s ease;
+}
+
+/* Arrow icon */
+.button_seven::after {
+    content: "↙";
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    color: #000000;
+    font-size: 25px;
+    line-height: 1;
+
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect */
+.button_seven:hover::before {
+    width: calc(100% - 8px);
+}
+
+.button_seven:hover::after {
+    transform: translateY(-50%) translateX(-2px);
+}
+
+.button_seven:active {
+    transform: scale(0.97);
+}
+/* =============================================== button Eight-======================================================*/
+
+/* Button Eight */
+
+.button_eight {
+    --button-eight-text: #1f387e;
+    --button-eight-circle: #c5e5e4;
+
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    padding: 16px 48px 16px 28px;
+    border: 2px solid transparent;
+    border-radius: 100px;
+
+    /* হালকা background color */
+    background: #eef2ff;
+    color: var(--button-eight-text);
+
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+    overflow: hidden;
+    isolation: isolate;
+
+    transition: all 0.6s ease;
+}
+
+/* Background circle */
+.button_eight::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--button-eight-circle);
+
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Arrow — শুরুতে ডান পাশে থাকবে */
+.button_eight::after {
+    content: "→";
+    position: absolute;
+    top: 50%;
+    right: 18px;
+
+    color: var(--button-eight-text);
+    font-size: 24px;
+    line-height: 1;
+
+    transform: translateY(-50%);
+    transition: all 0.6s ease;
+}
+
+/* Hover */
+.button_eight:hover {
+    color: #212121;
+    border-radius: 12px;
+}
+
+.button_eight:hover::before {
+    width: 300px;
+    height: 300px;
+    opacity: 1;
+}
+
+/* Hover করলে arrow বাম পাশে যাবে */
+.button_eight:hover::after {
+    right: auto;
+    left: 16px;
+    color: var(--button-eight-text);
+}
+
+.button_eight:hover {
+    padding-left: 48px;
+    padding-right: 28px;
+}
+
+/* Click effect */
+.button_eight:active {
+    transform: scale(0.95);
+}
+/* ================================================== button nine ===============================================*/
+
+/* Button Nine */
+
+.button_nine {
+    --button-nine-bg: #a1ff14;
+    --button-nine-hover: #c0ff14;
+
+    width: 110px;
+    height: 40px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+
+    padding-left: 8px;
+    border: none;
+    border-radius: 30px;
+
+    background: var(--button-nine-bg);
+    color: #131313;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.116);
+
+    transition: background-color 0.5s ease;
+}
+
+/* Compass icon */
+.button_nine::before {
+    content: "";
+    display: inline-block;
+    flex-shrink: 0;
+
+    width: 25px;
+    height: 25px;
+
+    background: #131313;
+    border-radius: 50%;
+
+    /* Compass-like symbol */
+    clip-path: polygon(
+        50% 0%, 65% 35%, 100% 50%,
+        65% 65%, 50% 100%, 35% 65%,
+        0% 50%, 35% 35%
+    );
+
+    transition: transform 1.5s ease;
+}
+
+/* Hover */
+.button_nine:hover {
+    background: var(--button-nine-hover);
+}
+
+.button_nine:hover::before {
+    transform: rotate(250deg);
+}
+
+/* Click */
+.button_nine:active {
+    transform: scale(0.97);
+    transition: transform 0.2s ease;
+}
+
+/* ================================================== button ten ===============================================*/
+
+/* Button Ten */
+
+.button_ten {
+    --button-ten-bg: #006bb3;
+    --button-ten-text: #ffffff;
+
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 10px 20px;
+    border: 3px solid #ffffff4d;
+    border-radius: 9999px;
+
+    background: var(--button-ten-bg);
+    color: var(--button-ten-text);
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+
+    transition: all 0.3s ease;
+}
+
+/* Arrow icon */
+.button_ten::after {
+    content: "→";
+    display: inline-block;
+    font-size: 24px;
+    line-height: 1;
+
+    transition: transform 0.3s ease;
+}
+
+/* Shine effect */
+.button_ten::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100px;
+
+    width: 70px;
+    height: 100%;
+
+    background: linear-gradient(
+        120deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.8),
+        transparent 70%
+    );
+
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Hover */
+.button_ten:hover {
+    transform: scale(1.05);
+    border-color: #ffffff99;
+}
+
+.button_ten:hover::after {
+    transform: translateX(4px);
+}
+
+.button_ten:hover::before {
+    animation: button_ten_shine 1.5s ease-out infinite;
+}
+
+/* Shine animation */
+@keyframes button_ten_shine {
+    0% {
+        left: -100px;
+    }
+
+    60%,
+    100% {
+        left: 100%;
+    }
+}
+
+/* Click */
+.button_ten:active {
+    transform: scale(0.97);
+}
 
 
